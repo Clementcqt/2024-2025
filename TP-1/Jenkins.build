@@ -2,14 +2,12 @@ def backendImage = ''
 def frontendImage = ''
 pipeline {
 
-  agent {
-    label 'jenkins-slave'
-  }
+  agent any
 
   stages {
     stage('Cloning Git') {
       steps {
-        git branch: 'main', credentialsId: 'myid', url: '......'
+        git branch: 'main', credentialsId: 'myid', url: 'https://github.com/Clementcqt/2024-2025.git'
       }
     }
     stage('Building backend image') {
@@ -55,7 +53,7 @@ pipeline {
 
     stage('Deploy backend container') {
       steps {
-        echo "Run  backend conatiner "
+        echo "Run  backend container "
       }
     }
     stage('Deploy frontend container') {
