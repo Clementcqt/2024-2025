@@ -1,5 +1,5 @@
 # README #
-
+test
 This repository concerns the practical work on the "DevOps and Continuous Deployment" course taught at EFREI in Master 2 (ST2DCE), for a total of 28 hours, including practical exercices and project.
 
 Practical exercises will be organized as the course progresses. The last two sessions will be reserved exclusively for the final project.
