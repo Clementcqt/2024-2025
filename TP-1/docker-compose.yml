@@ -2,9 +2,17 @@ version: '3.8'
 
 services:
   backend:
-    image: clementcaquet/backend:1
     build:
       context: ./backend
+    ports:
+      - "5000:5000"  # Expose backend Flask port
+    environment:
+      - DB_HOST=your_external_db_host  # Point to an external DB host
+      - DB_PORT=5432  # Adjust port if necessary
+      - DB_USER=admin
+      - DB_PASSWORD=postgres
+      - DB_NAME=mydatabase
+    depends_on: []  # No database container needed
 
   frontend:
     image: clementcaquet/frontend:1
