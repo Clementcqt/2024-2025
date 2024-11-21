@@ -11,7 +11,7 @@ services:
       - DB_HOST=database
       - DB_PORT=5432
       - DB_USER=admin
-      - DB_PASSWORD=postgres  # Set the superuser password for PostgreSQL
+      - DB_PASSWORD=postgres
       - DB_NAME=mydatabase
     depends_on:
       - database
@@ -29,13 +29,14 @@ services:
     image: postgres:14
     container_name: database
     environment:
-      POSTGRES_USER: admin        # Set the username
-      POSTGRES_PASSWORD: postgres  # Set the superuser password
-      POSTGRES_DB: mydatabase     # Set the default database name
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persist database data across container restarts
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database.sql:/docker-entrypoint-initdb.d/database.sql  # Ensure the SQL file is mapped
 
 volumes:
   postgres_data: {}
