@@ -4,7 +4,7 @@ services:
   backend:
     image: clementcaquet/backend:1
     build:
-      context: ./TP-1/backend
+      context: ../backend
     ports:
       - "5000:5000"
     environment:
@@ -16,7 +16,7 @@ services:
   frontend:
     image: clementcaquet/frontend:1
     build:
-      context: ./TP-1/frontend
+      context: ../frontend
     ports:
       - "8081:80"
     depends_on:
