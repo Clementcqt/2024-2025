@@ -61,9 +61,9 @@ pipeline {
       }
     stage('Deploy frontend container') {
       steps {
-        echo "Run  backend container "
+        echo "Run  frontend container "
         script{
-          sh 'docker run -d --name frontend-container --net=efrei -p 8081:80 clementcaquet/frontend:1'
+          sh 'docker run -d POSTGRES_PASSWORD=postgres --name frontend-container --net=efrei -p 8081:80 clementcaquet/frontend:1'
         }
       }
     }
