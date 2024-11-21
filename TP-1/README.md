@@ -93,3 +93,8 @@ Analyse the docker-compose.yml file to run the webapp (frontend) and the databas
 * Run docker-compose up to start the containers (add -d to run them in the background. Then run docker-compose stop when done.)
 
 * Browse to <http://localhost:8081> to see the response from the web app.
+
+docker run -d --rm --name=agent1 -p 22:22 --network jenkins -e "JENKINS_AGENT_SSH_PUBKEY=key" jenkins-agent-dind
+
+su
+chmod 777 /var/run/docker.sock
