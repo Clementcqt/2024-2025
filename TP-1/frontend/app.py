@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://admin:postgres@database:5432/mydatabase"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres@tp-1_backend_1:5432/postgres"
 db = SQLAlchemy(app)
 
 from models import Book
