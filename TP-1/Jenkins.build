@@ -1,7 +1,9 @@
 def backendImage = ''
 def frontendImage = ''
 pipeline {
-  agent any
+  agent {
+    label 'agent1'
+  }
   stages {
     stage('Cloning Git') {
       steps {
