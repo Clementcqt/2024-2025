@@ -2,7 +2,7 @@ def backendImage = ''
 def frontendImage = ''
 pipeline {
 
-  agent agent1
+  agent {agent1}
 
   stages {
     stage('Cloning Git') {
