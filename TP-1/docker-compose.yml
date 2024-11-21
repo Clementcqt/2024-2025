@@ -5,10 +5,6 @@ services:
     image: clementcaquet/backend:1
     build:
       context: ./backend
-    ports:
-      - "5000:5000"
-    environment:
-
     depends_on:
       - "frontend"
 
