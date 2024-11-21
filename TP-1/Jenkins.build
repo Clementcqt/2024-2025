@@ -55,7 +55,7 @@ pipeline {
       steps {
         echo "Run  backend container "
         script{
-          sh 'docker run -d --net=efrei -e POSTGRES_PASSWORD=postgres --name backend-container --net=efrei -p 8080:8080 clementcaquet/backend:1'
+          sh 'docker run -d -e POSTGRES_PASSWORD=postgres --name backend-container --net=efrei -p 8080:8080 clementcaquet/backend:1'
          }
         }
       }
