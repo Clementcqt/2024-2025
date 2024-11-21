@@ -5,8 +5,6 @@ services:
     image: clementcaquet/backend:1
     build:
       context: ./backend
-    depends_on:
-      - "frontend"
 
   frontend:
     image: clementcaquet/frontend:1
