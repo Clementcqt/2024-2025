@@ -1,9 +1,7 @@
 def backendImage = ''
 def frontendImage = ''
 pipeline {
-
   agent any
-
   stages {
     stage('Cloning Git') {
       steps {
@@ -23,7 +21,7 @@ pipeline {
     stage('Publish backend Image') {
       steps {
         script {
-          withDockerRegistry(credentialsId: 'DockerHubEfrei') {
+          withDockerRegistry(credentialsId: 'dockerid') {
             backendImage.push()
           }
 
@@ -44,7 +42,7 @@ pipeline {
     stage('Publish frontend Image') {
       steps {
         script {
-          withDockerRegistry(credentialsId: 'DockerHubEfrei') {
+          withDockerRegistry(credentialsId: 'dockerid') {
             frontendImage.push()
           }
         }
