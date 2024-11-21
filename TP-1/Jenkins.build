@@ -1,8 +1,6 @@
-def backendImage = ''
-def frontendImage = ''
 pipeline {
   agent {
-    label 'agent1'
+    label 'agent2'
   }
   stages {
     stage('Cloning Git') {
@@ -10,62 +8,25 @@ pipeline {
         git branch: 'main', credentialsId: 'myid', url: 'https://github.com/Clementcqt/2024-2025.git'
       }
     }
-    stage('Building backend image') {
+    stage('Building Containers with Docker Compose') {
       steps {
         script {
-          dir('TP-1/backend') {
-            backendImage = docker.build("clementcaquet/backend:1")
-
-          }
+          sh 'docker-compose -f TP-1/docker-compose.yml build'
         }
       }
     }
-    stage('Publish backend Image') {
+    stage('Deploying Containers with Docker Compose') {
       steps {
         script {
-          withDockerRegistry(credentialsId: 'dockerid') {
-            backendImage.push()
-          }
-
+          sh 'docker-compose -f TP-1/docker-compose.yml up -d'
         }
       }
     }
-
-    stage('Building frontend image') {
-      steps {
-        script {
-          dir('TP-1/frontend') {
-            frontendImage = docker.build("clementcaquet/frontend:1")
-          }
-        }
-      }
-    }
-
-    stage('Publish frontend Image') {
-      steps {
-        script {
-          withDockerRegistry(credentialsId: 'dockerid') {
-            frontendImage.push()
-          }
-        }
-      }
-    }
-
-    stage('Deploy backend container') {
-      steps {
-        echo "Run  backend container "
-        script{
-          sh 'docker run -d -e POSTGRES_PASSWORD=postgres --name backend-container --net=efrei clementcaquet/backend:1'
-         }
-        }
-      }
-    stage('Deploy frontend container') {
-      steps {
-        echo "Run  frontend container "
-        script{
-          sh 'docker run -d -e POSTGRES_PASSWORD=postgres --name frontend-container --net=efrei -p 8081:80 clementcaquet/frontend:1'
-        }
-      }
+  }
+  post {
+    always {
+      echo "Cleaning up Docker Compose setup"
+      sh 'docker-compose -f TP-1/docker-compose.yml down'
     }
   }
 }
