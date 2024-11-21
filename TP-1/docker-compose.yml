@@ -1,20 +1,13 @@
-version: '3.8'
-
+version: "3.8"
 services:
   backend:
     image: clementcaquet/backend:1
     build:
       context: ./backend
-    ports:
-      - "5000:5000"
+      dockerfile: Dockerfile
     environment:
-      - DB_HOST=database
-      - DB_PORT=5432
-      - DB_USER=admin
-      - DB_PASSWORD=postgres
-      - DB_NAME=mydatabase
-    depends_on:
-      - database
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   frontend:
     image: clementcaquet/frontend:1
@@ -25,18 +18,4 @@ services:
     depends_on:
       - backend
 
-  database:
-    image: postgres:14
-    container_name: database
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydatabase
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./backend/database.sql:/docker-entrypoint-initdb.d/database.sql  # Ensure the SQL file is mapped
 
-volumes:
-  postgres_data: {}
