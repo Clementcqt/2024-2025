@@ -25,7 +25,7 @@ In this part, you'll use `kubectl` to create Kubernetes pods, deployments, and s
 
 3. Run `kubectl describe deployment nginx` to get more details on the deployment created by step 1.
 
-4. Run `kubectl describe pod <pod-name>` to get more details on the pod created by step 1.
+4. Run `kubectl describe pod  pod-name>` to get more details on the pod created by step 1.
 
 5. Use `kubectl create service nodeport nginx --tcp=80:80` to make this Nginx pod accessible outside the cluster. Run `minikube service nginx -n dev` to access to the nginx service.
 
